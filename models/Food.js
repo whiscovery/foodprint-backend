@@ -20,6 +20,9 @@ const foodSchema = mongoose.Schema({
   위치: {
       type: String
   },
+  이미지: {
+      type: String
+  },
   기타: {
       type: String
   },
