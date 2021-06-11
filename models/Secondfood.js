@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const autoIdSetter = require('../middleware/auto-id-setter');
 
-const foodSchema = mongoose.Schema({
+const secondfoodSchema = mongoose.Schema({
   상호: {
       type: String
   },
@@ -30,9 +30,9 @@ const foodSchema = mongoose.Schema({
       type: Number
   }
 });
-autoIdSetter(foodSchema, mongoose, 'food', 'id');
+autoIdSetter(secondfoodSchema, mongoose, 'secondfood', 'id');
 // 모델 생성
 // 여기서 User가 MongoDB에서는 복수, 구분자 삭제등을 통해 users로 저장됨
-const Food = mongoose.model("Food", foodSchema);
+const Secondfood = mongoose.model("Secondfood", secondfoodSchema);
 
-module.exports = { Food };
+module.exports = { Secondfood };

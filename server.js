@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 
 const { Food } = require("./models/Food");
-
+const { Secondfood } = require("./models/Secondfood");
 // Initialize the app
 const app = express();
 // Middlewares
@@ -80,7 +80,39 @@ app.post('/writepost', (req, res) => {
     return res.status(200).json({ success: true });
   });
 });
-
+app.get('/secondfoods', (req, res, next) => {
+    Secondfood.find()
+    .then( (datas) => {
+      res.json(datas);
+    })
+    .catch((err) => {
+      console.error(err);
+      next(err);
+    })
+  })
+app.post('/writesecondfood', (req, res) => {
+  console.log("writesecondfood 삽입 접근");
+  const secondfood = new Secondfood(req.body);
+  secondfood.save((err, secondfoodInfo) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).json({ success: true });
+  });
+});
+app.delete('/second/delete/:id', (req, res) => {
+  Secondfood.findOne({"_id":  req.params.id }, (err, secondfood) => {
+      Secondfood.deleteOne({"_id": req.params.id }, (err, output) => {
+        if(err) return res.status(500).json({error: err});
+        if(!output) return res.status(404).json({error: 'Not found'});
+        res.json({message: "deleted"});
+      });
+  })
+      // Comment.deleteOne({"id": parseInt(req.params.id) }, (err, output) => {
+      //   if(err) return res.status(500).json({error: err});
+      //   if(!output) return res.status(404).json({error: 'Not found'});
+      //   res.json({message: "deleted"});
+      //   res.status(204).end();
+      // })   
+})
   // /로 get 요청
 app.get('/', function(req, res) { 
   res.sendFile(path.join(__dirname, './foodprint/dist/index.html'));
