@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 // Seting up the static directory
-app.use(express.static(path.join(__dirname, 'foodprint/dist')));
+app.use(express.static(path.join(__dirname, 'jejuvue3kakaomap/dist')));
 
 
 //Mongoose 로 DB 접속
@@ -115,8 +115,8 @@ app.delete('/second/delete/:id', (req, res) => {
 })
   // /로 get 요청
 app.get('/', function(req, res) { 
-  res.sendFile(path.join(__dirname, './foodprint/dist/index.html'));
+  res.sendFile(path.join(__dirname, './jejuvue3kakaomap/dist/index.html'));
 });
 app.get('*', (req, res) => { 
-  res.sendFile(path.join(__dirname, './foodprint/dist/index.html'));
+  res.sendFile(path.join(__dirname, './jejuvue3kakaomap/dist/index.html'));
 });
