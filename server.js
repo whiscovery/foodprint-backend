@@ -80,6 +80,15 @@ app.post('/writepost', (req, res) => {
     return res.status(200).json({ success: true });
   });
 });
+app.delete('/food/delete/:id', (req, res) => {
+  Food.findOne({"_id":  req.params.id }, (err, food) => {
+      Food.deleteOne({"_id": req.params.id }, (err, output) => {
+        if(err) return res.status(500).json({error: err});
+        if(!output) return res.status(404).json({error: 'Not found'});
+        res.json({message: "deleted"});
+      });
+  })
+})
 app.get('/secondfoods', (req, res, next) => {
     Secondfood.find()
     .then( (datas) => {
