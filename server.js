@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'jejuvue3kakaomap/dist')));
 
 
 //Mongoose 로 DB 접속
-const config = "mongodb+srv://whiscovery:wjdwlsdnr5728@cluster0.ngeoi.mongodb.net/foodprint?retryWrites=true&w=majority"
+const config = "mongodb+srv://whiscovery:[pass]@cluster0.ngeoi.mongodb.net/foodprint?retryWrites=true&w=majority"
 var db = mongoose.connect(config, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
